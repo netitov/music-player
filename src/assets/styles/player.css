@@ -25,14 +25,14 @@
 .player__song-name {
   margin: 5px 0 10px;
   font-weight: 300;
-  font-size: 1.4em;
+  font-size: 1.2em;
 }
 
 .player__artist {
   margin: 0;
   font-weight: 300;
   color: var(--light-grey);
-
+  font-size: 15px;
 }
 
 .player__seek-slider {
@@ -106,8 +106,8 @@
 }
 
 .player__btn_small {
-  padding: 4px 7px;
-  border-radius: 10px;
+  padding: 7px;
+  border-radius: 50%;
   transition: background 0.3s;
   display: flex;
 }
@@ -142,10 +142,25 @@
 }
 
 .player__btn-play > svg {
-  /* background-image: url('../img/play.svg'); */
-  width: 25px;
-  height: 25px;
+  height: 21px;
   margin-left: 5px;
+}
+
+.player__play-icon {
+
+}
+
+.player__pause-icon {
+  display: none;
+}
+
+.player__btn-play_inactive > .player__play-icon {
+  display: none;
+}
+
+.player__btn-play_inactive > .player__pause-icon {
+  display: block;
+  margin-left: 0;
 }
 
 .player__btn-next > svg {

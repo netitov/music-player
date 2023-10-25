@@ -36,6 +36,10 @@ module.exports = {
           options: { importLoaders: 1 }
         },
         'postcss-loader']
+      },
+      {
+        test: /\.(mp3|ogg|wav|wma)$/,
+        use: 'file-loader',
       }
     ]
   },

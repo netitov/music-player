@@ -1,4 +1,11 @@
 import '../assets/styles/index.css';
+import Player from './player';
+import { songData } from '../assets/utils/songData';
+
+
+const musicPlayer = new Player(songData);
+
+musicPlayer.setEventListeners();
 
 let slider = document.querySelector('.player__seek-slider-value');
 
