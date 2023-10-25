@@ -4,9 +4,9 @@ export default class Player {
     this._playBtn = document.querySelector('.player__btn-play');
     this._nextSongBtn = document.querySelector('.player__btn-next');
     this._prevSongBtn = document.querySelector('.player__btn-prev');
-    this._playActive = false;
+    this.isPlaying = false;
     this._allSongs = songs;
-    this._audio = new Audio();
+    this.audio = new Audio();
     this._playerImage = document.querySelector('.player__image');
     this._songName = document.querySelector('.player__song-name');
     this._artist = document.querySelector('.player__artist');
@@ -17,7 +17,7 @@ export default class Player {
     this._playerImage.src = songData.cover;
     this._songName.textContent = songData.songName;
     this._artist.textContent = songData.artist;
-    this._audio.src = songData.song;
+    this.audio.src = songData.song;
     this._activeSong = songData;
 
     if (play) {
@@ -52,25 +52,30 @@ export default class Player {
   }
 
   _playSong() {
-    this._audio.play();
-    this._playActive = true;
+    this.audio.play();
+    this.isPlaying = true;
     this._playBtn.classList.add('player__btn-play_inactive');
   }
 
   _pauseSong() {
-    this._audio.pause();
-    this._playActive = false;
+    this.audio.pause();
+    this.isPlaying = false;
     this._playBtn.classList.remove('player__btn-play_inactive');
   }
 
   _togglePlay() {
     //if play is not active - play song
-    if (!this._playActive) {
+    if (!this.isPlaying) {
       this._playSong();
       //else - pause song
     } else {
       this._pauseSong();
     }
+  }
+
+  getCurrentAudio() {
+    console.log('getCurrent')
+    return { audio: this.audio, isPlaying: this.isPlaying };
   }
 
 

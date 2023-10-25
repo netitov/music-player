@@ -49,38 +49,39 @@
   color: var(--light-grey);
 }
 
-
-/* The slider itself */
 .player__seek-slider-value {
-  appearance: none;  /* Override default CSS styles */
-  width: 100%; /* Full-width */
-  height: 5px; /* Specified height */
-  background-color: var(--dark-grey); /* Grey background */
-  outline: none; /* Remove outline */
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background-color: var(--dark-grey);
+  outline: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.player__seek-slider-value:hover {
+  height: 6px;
+}
+
 .player__seek-slider-value::-webkit-slider-thumb {
-  appearance: none; /* Override default look */
-  width: 17px; /* Set a specific slider handle width */
-  height: 17px; /* Slider handle height */
-  background: #b8630f; /* Green background */
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  background: #b8630f;
   border-radius: 50%;
-  cursor: pointer; /* Cursor on hover */
+  cursor: pointer;
 }
 
 .player__seek-slider-value::-moz-range-thumb {
-  appearance: none; /* Override default look */
-  width: 17px; /* Set a specific slider handle width */
-  height: 17px; /* Slider handle height */
-  background: #b8630f; /* Green background */
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  background: #b8630f;
   border-radius: 50%;
-  cursor: pointer; /* Cursor on hover */
+  cursor: pointer;
 }
 
-.player_total-time {
+.player__total-time {
   font-weight: 300;
   font-size: 14px;
   color: var(--light-grey);
