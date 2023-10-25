@@ -1,0 +1,40 @@
+:root {
+  --main-black: #292626;
+  --main-white: #ebe4e4;
+  --light-grey: #afaeae;
+  --dark-grey: #424040;
+}
+
+.page {
+  background-color: var(--main-black);
+  color: var(--main-white);
+  font-family: 'Noto Sans Display', sans-serif;
+  padding: 10px;
+  min-height: 100vh;
+}
+
+.page__header {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  align-items: center;
+  margin: auto;
+  justify-content: flex-end;
+}
+
+.page__playlist-btn {
+  display: flex;
+  padding: 5px;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.page__playlist-btn:hover {
+  background-color: #43414157;
+}
+
+.page__playlist-btn > svg {
+  width: 30px;
+  height: 30px;
+}

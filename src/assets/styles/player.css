@@ -1,0 +1,165 @@
+.player {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.player__img-container {
+  display: inline-flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.player__image {
+  max-width: 600px;
+  max-height: 300px;
+}
+
+.player__song-data {
+
+}
+
+.player__song-name {
+  margin: 5px 0 10px;
+  font-weight: 300;
+  font-size: 1.4em;
+}
+
+.player__artist {
+  margin: 0;
+  font-weight: 300;
+  color: var(--light-grey);
+
+}
+
+.player__seek-slider {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  gap: 8px;
+  align-items: center;
+}
+
+.player__current-time {
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--light-grey);
+}
+
+
+/* The slider itself */
+.player__seek-slider-value {
+  appearance: none;  /* Override default CSS styles */
+  width: 100%; /* Full-width */
+  height: 5px; /* Specified height */
+  background-color: var(--dark-grey); /* Grey background */
+  outline: none; /* Remove outline */
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.player__seek-slider-value::-webkit-slider-thumb {
+  appearance: none; /* Override default look */
+  width: 17px; /* Set a specific slider handle width */
+  height: 17px; /* Slider handle height */
+  background: #b8630f; /* Green background */
+  border-radius: 50%;
+  cursor: pointer; /* Cursor on hover */
+}
+
+.player__seek-slider-value::-moz-range-thumb {
+  appearance: none; /* Override default look */
+  width: 17px; /* Set a specific slider handle width */
+  height: 17px; /* Slider handle height */
+  background: #b8630f; /* Green background */
+  border-radius: 50%;
+  cursor: pointer; /* Cursor on hover */
+}
+
+.player_total-time {
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--light-grey);
+}
+
+.player__btn-container {
+  display: flex;
+  gap: 35px;
+  align-items: center;
+  justify-content: center;
+}
+
+.player__main-btns {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.player__btn {
+  padding: 0;
+  cursor: pointer;
+}
+
+.player__btn_small {
+  padding: 4px 7px;
+  border-radius: 10px;
+  transition: background 0.3s;
+  display: flex;
+}
+
+.player__btn_small:hover {
+  background: #43414157;
+}
+
+.player__btn > span {
+  display: block;
+  background-size: contain;
+}
+
+.player__btn-prev > svg  {
+  width: 23px;
+  height: 23px;
+}
+
+.player__btn-play {
+  border: 1px solid var(--dark-grey);
+  border-radius: 50%;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.player__btn-play:hover {
+  border-color: #b8630f;
+}
+
+.player__btn-play > svg {
+  /* background-image: url('../img/play.svg'); */
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
+}
+
+.player__btn-next > svg {
+  /* background-image: url('../img/next.svg'); */
+  width: 23px;
+  height: 23px;
+}
+
+.player__btn-shuffle > svg {
+  width: 18px;
+  height: 18px;
+}
+
+.player__btn-repeat > svg {
+  width: 18px;
+  height: 18px;
+}
