@@ -1,12 +1,13 @@
 
 export default class SeekSlider {
-  constructor ({ getCurrentAudio }) {
+  constructor ({ getCurrentAudio, formatTime }) {
     this._slider = document.querySelector('.player__seek-slider-value');
     this._getCurrentAudio = getCurrentAudio;
     this._audioData = this._getCurrentAudio();
     this._currentSongTime = document.querySelector('.player__current-time');
     this._totalSongTime = document.querySelector('.player__total-time');
     this._songDuration = 0;
+    this._formatTime = formatTime;
   }
 
   //update slider value while song playng
@@ -35,13 +36,6 @@ export default class SeekSlider {
   _updateTime() {
     const currentTime = this._audioData.audio.currentTime;
     this._currentSongTime.textContent = this._formatTime(currentTime);
-  }
-
-  _formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = Math.floor(seconds % 60);
-    const formattedTime = `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-    return formattedTime;
   }
 
   setEventListeners() {

@@ -11,6 +11,7 @@
   </head>
   <body>
     <div class="page">
+
       <header class="page__header">
         <button class="page__playlist-btn" title="Открыть плейлист">
           <svg fill="#b8630f" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;}</style></defs><title>playlist</title><rect x="4" y="6" width="18" height="2"></rect><rect x="4" y="12" width="18" height="2"></rect><rect x="4" y="18" width="12" height="2"></rect><polygon points="21 18 28 23 21 28 21 18"></polygon><rect id="_Transparent_Rectangle_" data-name="<Transparent Rectangle>" class="cls-1" width="32" height="32"></rect></g></svg>
@@ -37,6 +38,7 @@
           <div class="player__total-time">00:00</div>
         </div>
 
+        <!-- player btn container -->
         <div class="player__btn-container">
           <button type="button" class="player__btn player__btn_small player__btn-shuffle">
             <svg fill="#afaeae" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12.572 15.808l1.227-1.726-4.197-5.728h-9.517v2h8.484zM28.712 10.354l-2.423 2.173c-0.292 0.28-0.387 0.732-0.095 1.011l0.171 0.252c0.293 0.28 0.765 0.28 1.057 0l3.992-3.61c0.006-0.005 0.012-0.006 0.017-0.011l0.265-0.253c0.146-0.14 0.219-0.324 0.218-0.509 0.001-0.184-0.072-0.368-0.218-0.507l-0.265-0.253c-0.005-0.005-0.011-0.007-0.017-0.011l-4.054-3.701c-0.293-0.279-0.764-0.279-1.058 0l-0.171 0.252c-0.293 0.279-0.198 0.731 0.094 1.010l2.377 2.155h-7.242l-12.791 18h-8.484v2h9.516l12.791-18zM31.432 26.649c-0.005-0.005-0.011-0.007-0.017-0.012l-4.054-3.701c-0.293-0.279-0.764-0.279-1.058 0l-0.171 0.252c-0.293 0.279-0.198 0.732 0.094 1.011l2.386 2.163-6.219-0.009-3.576-5.532-1.227 1.727 3.77 5.805 7.342 0.009-2.413 2.164c-0.292 0.279-0.387 0.733-0.095 1.012l0.171 0.252c0.293 0.28 0.765 0.28 1.057 0l3.992-3.61c0.006-0.005 0.012-0.006 0.017-0.011l0.265-0.253c0.146-0.14 0.219-0.324 0.218-0.509 0.001-0.183-0.072-0.368-0.218-0.507z"></path> </g></svg>
@@ -66,6 +68,40 @@
           </button>
         </div>
 
+      </div>
+
+      <div class="playlist-modal">
+        <div class="page__playlist playlist">
+          <table class="playlist__table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Название</th>
+                <th>Исполнитель</th>
+                <th>Длительность</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody class="playlist__table-body">
+
+              <template id="track-template">
+                <tr class="playlist__table-row">
+                  <td><img class="playlist__img" src="<%=require('./assets/img/meteora.jpg')%>" alt=""></td>
+                  <td class="playlist__title">Breaking The Habit</td>
+                  <td class="playlist__artist">Libkib Park</td>
+                  <td class="playlist__duration">03:25</td>
+                  <td>
+                    <button type="button" class="playlist__play-btn">
+                      <svg class="playlist__icon playlist__play-icon" viewBox="-0.5 0 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ebe4e4"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>play [#1001]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-427.000000, -3765.000000)" fill="#ebe4e4"> <g id="icons" transform="translate(56.000000, 160.000000)"> <polygon id="play-[#1001]" points="371 3605 371 3613 378 3609"> </polygon> </g> </g> </g> </g></svg>
+                      <svg class="playlist__icon playlist__pause-icon" viewBox="-1 0 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ebe4e4" stroke="#ebe4e4"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-67.000000, -3765.000000)" fill="#ebe4e4"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M11,3613 L13,3613 L13,3605 L11,3605 L11,3613 Z M15,3613 L17,3613 L17,3605 L15,3605 L15,3613 Z" id="pause-[#b8630f]"> </path> </g> </g> </g> </g></svg>
+                    </button>
+                  </td>
+                </tr>
+              </template>
+
+            </tbody>
+          </table>
+        </div>
       </div>
 
     </div>

@@ -14,17 +14,21 @@ export default class Player {
     this._volume = document.querySelector('.player__volume-input');
     this._volumeValue = document.querySelector('.player__volume-value');
     this._volumeBtn = document.querySelector('.player__btn-volume');
+    this.setSong = this.setSong.bind(this);
   }
 
-  _setSong(songData, play) {
-    this._playerImage.src = songData.cover;
-    this._songName.textContent = songData.songName;
-    this._artist.textContent = songData.artist;
-    this.audio.src = songData.song;
-    this._activeSong = songData;
-
+  setSong(songData, play) {
+    if (this._activeSong?.song !== songData.song) {
+      this._playerImage.src = songData.cover;
+      this._songName.textContent = songData.songName;
+      this._artist.textContent = songData.artist;
+      this.audio.src = songData.song;
+      this._activeSong = songData;
+    }
     if (play) {
       this._playSong();
+    } else {
+      this._pauseSong()
     }
   }
 
@@ -38,7 +42,7 @@ export default class Player {
       nextSong = this._allSongs[currentSongIndex + 1];
     }
 
-    this._setSong(nextSong, true);
+    this.setSong(nextSong, true);
   }
 
   _playPreviousSong() {
@@ -51,7 +55,7 @@ export default class Player {
       previousSong = this._allSongs[currentSongIndex - 1];
     }
 
-    this._setSong(previousSong, true);
+    this.setSong(previousSong, true);
   }
 
   _playSong() {
@@ -77,8 +81,7 @@ export default class Player {
   }
 
   getCurrentAudio() {
-    console.log('getCurrent')
-    return { audio: this.audio, isPlaying: this.isPlaying };
+    return { audio: this.audio, isPlaying: this.isPlaying, songData: this._activeSong };
   }
 
   _handleVolume() {
@@ -96,7 +99,7 @@ export default class Player {
   setEventListeners() {
 
     //set default song
-    this._setSong(this._allSongs[0]);
+    this.setSong(this._allSongs[0]);
 
     this._playBtn.addEventListener('click', () => this._togglePlay());
     this._nextSongBtn.addEventListener('click', () => this._playNextSong());

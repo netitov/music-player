@@ -193,8 +193,8 @@
 }
 
 .player__btn-volume > svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 
 .player__volume-wrapper {
@@ -237,7 +237,7 @@
   color: var(--light-grey);
   position: absolute;
   bottom: 9px;
-  right: -25px;
+  right: -29px;;
 }
 
 .player__volume-icon {
