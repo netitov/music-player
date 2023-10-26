@@ -1,6 +1,5 @@
-
 export default class Player {
-  constructor (songs) {
+  constructor (songs, WaveSurfer) {
     this._playBtn = document.querySelector('.player__btn-play');
     this._nextSongBtn = document.querySelector('.player__btn-next');
     this._prevSongBtn = document.querySelector('.player__btn-prev');
@@ -15,8 +14,22 @@ export default class Player {
     this._volumeValue = document.querySelector('.player__volume-value');
     this._volumeBtn = document.querySelector('.player__btn-volume');
     this.setSong = this.setSong.bind(this);
+    this._waveSurfer = WaveSurfer.create({
+      container: '#waveform',
+      waveColor: '#b8630fad',
+      progressColor: '#b8630f7d',
+      barWidth: 3,
+      barRadius: 10,
+      barGap: 2,
+      minPxPerSec: 20,
+      hideScrollbar: true,
+      media: this.audio,
+    });
+    this._spinner = document.querySelector('.player__spinner');
+    this._wavesAreLoading;
   }
 
+  //set song data: src, image and etc
   setSong(songData, play) {
     if (this._activeSong?.song !== songData.song) {
       this._playerImage.src = songData.cover;
@@ -24,12 +37,32 @@ export default class Player {
       this._artist.textContent = songData.artist;
       this.audio.src = songData.song;
       this._activeSong = songData;
-    }
-    if (play) {
+
+      //display spinner while waves are loading
+      this._spinner.classList.add('player__spinner_active');
+      this._wavesAreLoading = true;
+
+      this._waveSurfer.media = this.audio;
+      this._waveSurfer.load(songData.song);
+
+      //wait for waveSurfer loaded audio
+      this._waveSurfer.on('ready', () => {
+        if (play) {
+          this._playSong();
+        } else {
+          this._pauseSong()
+        }
+
+        //remove spinner
+        this._spinner.classList.remove('player__spinner_active');
+        this._wavesAreLoading = false;
+      })
+    } else if (play) {
       this._playSong();
     } else {
       this._pauseSong()
     }
+
   }
 
   _playNextSong() {
@@ -59,15 +92,19 @@ export default class Player {
   }
 
   _playSong() {
-    this.audio.play();
-    this.isPlaying = true;
-    this._playBtn.classList.add('player__btn-play_inactive');
+    //play only of waves loaded
+    if (!this._wavesAreLoading) {
+      this.audio.play();
+      this.isPlaying = true;
+      this._playBtn.classList.add('player__btn-play_inactive');
+    }
   }
 
   _pauseSong() {
     this.audio.pause();
     this.isPlaying = false;
     this._playBtn.classList.remove('player__btn-play_inactive');
+    this._waveSurfer.pause()
   }
 
   _togglePlay() {

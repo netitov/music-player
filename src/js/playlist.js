@@ -115,7 +115,6 @@ export default class Playlist {
         } else {
           //play selected song
           this._selectSong(songData, true);
-
         }
         //set styles for selected song
         this._setPlayingSong();
