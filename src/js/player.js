@@ -37,6 +37,7 @@ export default class Player {
   setSong(songData, play) {
     if (this._activeSong?.song !== songData.song) {
       this._playerImage.src = songData.cover;
+      this._playerImage.alt = songData.artist;
       this._songName.textContent = songData.songName;
       this._artist.textContent = songData.artist;
       this.audio.src = songData.song;

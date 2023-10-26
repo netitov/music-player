@@ -237,8 +237,8 @@
   font-size: 13px;
   color: var(--light-grey);
   position: absolute;
-  bottom: 9px;
-  right: -29px;;
+  bottom: 13px;
+  right: -31px;
 }
 
 .player__volume-icon {
@@ -287,5 +287,11 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .player__btn-volume {
+    display: none;
   }
 }

@@ -8,24 +8,37 @@ import WaveSurfer from 'wavesurfer.js'
 
 const playlistBtn = document.querySelector('.page__playlist-btn');
 
-const musicPlayer = new Player(songData, WaveSurfer);
+const initializePlayer = (playList) => {
+  const musicPlayer = new Player(playList, WaveSurfer);
+  const seekSlider = new SeekSlider({
+    getCurrentAudio: () => musicPlayer.getCurrentAudio(),
+    formatTime
+  });
+  const musicPlaylist = new Playlist({
+    getCurrentAudio: () => musicPlayer.getCurrentAudio(),
+    formatTime,
+    selectSong: musicPlayer.setSong
+  }, playList);
 
-const seekSlider = new SeekSlider({
-  getCurrentAudio: () => musicPlayer.getCurrentAudio(),
-  formatTime
-});
+  musicPlayer.setEventListeners();
+  seekSlider.setEventListeners();
+  musicPlaylist.setEventListeners();
 
-const musicPlaylist = new Playlist({
-  getCurrentAudio: () => musicPlayer.getCurrentAudio(),
-  formatTime,
-  selectSong: musicPlayer.setSong
-}, songData);
+  playlistBtn.addEventListener('click', () => musicPlaylist.openPlaylist() );
+};
 
-playlistBtn.addEventListener('click', () => musicPlaylist.openPlaylist() );
+//check playlist in local storage: add if doesn't exist
+const setSongList = () => {
+  let playList = [];
+  const savedSongs = JSON.parse(localStorage.getItem('playlist'));
+  if (savedSongs) {
+    playList = savedSongs;
+  } else {
+    localStorage.setItem('playlist', JSON.stringify(songData));
+    playList = songData;
+  }
+  initializePlayer(playList);
+};
 
-musicPlayer.setEventListeners();
-seekSlider.setEventListeners();
-musicPlaylist.setEventListeners();
-
-
+setSongList();
 

@@ -45,6 +45,7 @@ export default class Playlist {
     const durationElement = elementTemplate.querySelector('.playlist__duration');
 
     imgElement.src = element.cover;
+    imgElement.alt = element.artist;
     titleElement.textContent = element.songName;
     artistElement.textContent = element.artist;
     let track = new Audio();
