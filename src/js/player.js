@@ -11,6 +11,9 @@ export default class Player {
     this._songName = document.querySelector('.player__song-name');
     this._artist = document.querySelector('.player__artist');
     this._activeSong;
+    this._volume = document.querySelector('.player__volume-input');
+    this._volumeValue = document.querySelector('.player__volume-value');
+    this._volumeBtn = document.querySelector('.player__btn-volume');
   }
 
   _setSong(songData, play) {
@@ -78,6 +81,17 @@ export default class Player {
     return { audio: this.audio, isPlaying: this.isPlaying };
   }
 
+  _handleVolume() {
+    this.audio.volume = Number(this._volume.value) / 100;
+    this._volumeValue.textContent = this._volume.value + '%';
+
+    if (this._volume.value === '0') {
+      this._volumeBtn.classList.add("player__btn-volume_mute");
+    } else {
+      this._volumeBtn.classList.remove("player__btn-volume_mute");
+    }
+  }
+
 
   setEventListeners() {
 
@@ -87,6 +101,7 @@ export default class Player {
     this._playBtn.addEventListener('click', () => this._togglePlay());
     this._nextSongBtn.addEventListener('click', () => this._playNextSong());
     this._prevSongBtn.addEventListener('click', () => this._playPreviousSong());
+    this._volume.addEventListener('input', () => this._handleVolume());
   }
 
 }
