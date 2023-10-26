@@ -113,13 +113,13 @@
 }
 
 .player__btn_small {
-  padding: 7px;
+  padding: 10px;
   border-radius: 50%;
   transition: background 0.3s;
   display: flex;
 }
 
-.player__btn_small:hover {
+.player__btn_small:hover, .player__btn_active {
   background: #43414157;
 }
 

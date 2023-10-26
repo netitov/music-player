@@ -27,6 +27,10 @@ export default class Player {
     });
     this._spinner = document.querySelector('.player__spinner');
     this._wavesAreLoading;
+    this._randomBtn = document.querySelector('.player__btn-shuffle');
+    this._randomMode = false;
+    this._repeatBtn = document.querySelector('.player__btn-repeat');
+    this._repeatMode = false;
   }
 
   //set song data: src, image and etc
@@ -62,7 +66,6 @@ export default class Player {
     } else {
       this._pauseSong()
     }
-
   }
 
   _playNextSong() {
@@ -89,6 +92,17 @@ export default class Player {
     }
 
     this.setSong(previousSong, true);
+  }
+
+  _playRandomSong() {
+    const filteredSongs = this._allSongs.filter(i => i.song !== this._activeSong.song);
+    const randomIndex = Math.floor(Math.random() * filteredSongs.length);
+    const randomSong = filteredSongs[randomIndex];
+    this.setSong(randomSong, true);
+  }
+
+  _repeatSong() {
+    this.setSong(this._activeSong, true);
   }
 
   _playSong() {
@@ -132,16 +146,62 @@ export default class Player {
     }
   }
 
+  _toggleRandomMode() {
+    if (this._randomMode) {
+      this._randomMode = false;
+      this._randomBtn.classList.remove('player__btn_active');
+    } else {
+      this._randomMode = true;
+      this._randomBtn.classList.add('player__btn_active');
+      if (this._repeatMode) this._toggleRepeatMode();
+    }
+  }
+
+  _toggleRepeatMode() {
+    if (this._repeatMode) {
+      this._repeatMode = false;
+      this._repeatBtn.classList.remove('player__btn_active');
+    } else {
+      this._repeatMode = true;
+      this._repeatBtn.classList.add('player__btn_active');
+      if (this._randomMode) this._toggleRandomMode();
+    }
+  }
+
 
   setEventListeners() {
 
     //set default song
     this.setSong(this._allSongs[0]);
 
+    //toggle play-pause
     this._playBtn.addEventListener('click', () => this._togglePlay());
+
+    //play next song on btn click
     this._nextSongBtn.addEventListener('click', () => this._playNextSong());
+
+    //play previous song on btn click
     this._prevSongBtn.addEventListener('click', () => this._playPreviousSong());
+
+    //hande volume
     this._volume.addEventListener('input', () => this._handleVolume());
+
+    //handle events after song ended
+    this.audio.addEventListener('ended', () => {
+      if (this._repeatMode) {
+        this._repeatSong();
+      } else if (this._randomMode) {
+        this._playRandomSong();
+      } else {
+        this._playNextSong();
+      }
+    });
+
+    //toggle random mode
+    this._randomBtn.addEventListener('click', () => this._toggleRandomMode());
+
+    //toggle repeat mode
+    this._repeatBtn.addEventListener('click', () => this._toggleRepeatMode());
   }
 
 }
