@@ -1,6 +1,6 @@
 # Music player
 
-![Project image](https://github.com/netitov/music-player/blob/main/src/assets/img/site.png)
+![Project image](https://github.com/netitov/music-player/blob/main/src/assets/img/site-img.png)
 
 View the project: <https://netitov.github.io/music-player/>
 
