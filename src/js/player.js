@@ -47,6 +47,8 @@ export default class Player {
       this._spinner.classList.add('player__spinner_active');
       this._wavesAreLoading = true;
 
+      this._waveSurfer.un('ready');
+
       this._waveSurfer.media = this.audio;
       this._waveSurfer.load(songData.song);
 
@@ -55,8 +57,10 @@ export default class Player {
         if (play) {
           this._playSong();
         } else {
-          this._pauseSong()
+          this._pauseSong();
         }
+
+        this._waveSurfer.un('ready');
 
         //remove spinner
         this._spinner.classList.remove('player__spinner_active');
@@ -184,8 +188,23 @@ export default class Player {
     //play previous song on btn click
     this._prevSongBtn.addEventListener('click', () => this._playPreviousSong());
 
-    //hande volume
-    this._volume.addEventListener('input', () => this._handleVolume());
+    //handle volume change
+    this._volume.addEventListener('input', (e) => {
+      e.stopPropagation();
+      this._handleVolume();
+    });
+
+    //toggle mute on volume btn click
+    this._volumeBtn.addEventListener('click', (e) => {
+      if (e.target !== this._volume) {
+        if (this._volume.value !== '0') {
+          this._volume.value = '0';
+        } else {
+          this._volume.value = '100';
+        }
+        this._handleVolume();
+      }
+    })
 
     //handle events after song ended
     this.audio.addEventListener('ended', () => {

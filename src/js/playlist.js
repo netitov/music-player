@@ -69,7 +69,7 @@ export default class Playlist {
   }
 
   //set styles for playng song
-  _setPlayingSong() {
+  async _setPlayingSong(playSong) {
 
     //clear active song data
     const playIcons = document.querySelectorAll('.playlist__play-btn');
@@ -85,11 +85,10 @@ export default class Playlist {
     playIcon.classList.add('playlist__play-btn_active');
 
     //tofggle icon play/pause
-    if (currentSong.isPlaying) {
+    if (currentSong.isPlaying || playSong) {
       playIcon.classList.add('playlist__play-btn_paused');
     } else {
       playIcon.classList.remove('playlist__play-btn_paused');
-
     }
   }
 
@@ -113,12 +112,12 @@ export default class Playlist {
         //pause selected song
         if (currentSong.isPlaying && currentSong.songData.song === songData.song) {
           this._selectSong(songData, false);
+          this._setPlayingSong(false);
         } else {
           //play selected song
           this._selectSong(songData, true);
+          this._setPlayingSong(true);
         }
-        //set styles for selected song
-        this._setPlayingSong();
       }
     })
 
